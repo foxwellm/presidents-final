@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import {connect} from 'react-redux'
+import { presidentsFetchDataSuccess} from '../actions'
 
 class App extends Component {
   constructor() {
@@ -23,11 +25,14 @@ class App extends Component {
       }
       const result = await response.json()
       console.log(result)
+      // debugger
+      this.props.presidentsFetchDataSuccess(result)
     } catch {
       debugger
     }
   }
   render() {
+    console.log(this.props)
     return (
       <div className="App">
         App
@@ -36,4 +41,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  presidents: state.presidents,
+  isLoading: state.isLoading,
+  error: state.error
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  presidentsFetchDataSuccess: (presidents) => dispatch(presidentsFetchDataSuccess(presidents))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
