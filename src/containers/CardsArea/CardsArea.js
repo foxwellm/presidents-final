@@ -7,8 +7,8 @@ export class CardsArea extends Component {
 
 
   render() {
-    const displayCards = this.props.presidents.map(president => {
-      return <Card {...president}/>
+    const displayCards = this.props.presidents.map((president, i) => {
+      return <Card {...president} key={i}/>
     })
 
     return (
@@ -17,10 +17,8 @@ export class CardsArea extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  presidents: state.presidents,
-  isLoading: state.isLoading,
-  error: state.error
+export const mapStateToProps = (state) => ({
+  presidents: state.presidents
 })
 
 export default connect(mapStateToProps)(CardsArea);
