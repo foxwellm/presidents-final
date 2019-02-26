@@ -35,15 +35,9 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  presidents: state.presidents,
-  isLoading: state.isLoading,
-  error: state.error
-})
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPresidents: (url,options) => dispatch(fetchPresidents(url,options)),
-  // presidentsFetchDataSuccess: (presidents) => dispatch(presidentsFetchDataSuccess(presidents))
+  fetchPresidents: (url,options) => dispatch(fetchPresidents(url,options))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

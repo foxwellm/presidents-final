@@ -10,7 +10,6 @@ export class CardsArea extends Component {
     const displayCards = this.props.presidents.map(president => {
       return <Card {...president}/>
     })
-// debugger
 
     return (
       <div className='CardArea'>{displayCards}</div>
