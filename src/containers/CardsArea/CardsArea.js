@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Card from '../../components/Card/Card'
+import './CardsArea.css'
 
 export class CardsArea extends Component {
 
@@ -12,7 +13,7 @@ export class CardsArea extends Component {
 // debugger
 
     return (
-      <div>{displayCards}</div>
+      <div className='CardArea'>{displayCards}</div>
     )
   }
 }
