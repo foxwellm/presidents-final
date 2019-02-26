@@ -12,6 +12,7 @@ export const fetchPresidents = (url, options) => {
       }
       dispatch(isLoading(false))
       const presidents = await response.json()
+      console.log(presidents)
       dispatch(presidentsFetchDataSuccess(presidents))
     } catch (error) {
       dispatch(hasErrored(error.message))
