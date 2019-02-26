@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import {connect} from 'react-redux'
 // import { presidentsFetchDataSuccess} from '../actions'
-import {fetchPresidents} from '../thunks/fetchPresidents'
-
-class App extends Component {
+import {fetchPresidents} from '../../thunks/fetchPresidents'
+import CardsArea from '../CardsArea/CardsArea'
+export class App extends Component {
   constructor() {
     super()
     this.state = {
@@ -22,29 +22,14 @@ class App extends Component {
       }
     }
     this.props.fetchPresidents(url, options)
-    // try {
-    //   const response = await fetch('http://localhost:3001/api/v1/presidents', {
-    //     method: 'GET',
-    //     headers: {
-    //       'content-type': 'application/json'
-    //     }
-    //   })
-    //   if (!response.ok) {
-    //     throw Error('wrong')
-    //   }
-    //   const result = await response.json()
-    //   console.log(result)
-    //   // debugger
-    //   this.props.presidentsFetchDataSuccess(result)
-    // } catch {
-    //   debugger
-    // }
+
   }
   render() {
     console.log(this.props)
     return (
       <div className="App">
-        App
+        <h2>Presidents and Assholes</h2>
+        <CardsArea />
       </div>
     );
   }
