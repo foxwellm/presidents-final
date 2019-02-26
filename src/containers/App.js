@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import {connect} from 'react-redux'
-import { presidentsFetchDataSuccess} from '../actions'
+// import { presidentsFetchDataSuccess} from '../actions'
+import {fetchPresidents} from '../thunks/fetchPresidents'
 
 class App extends Component {
   constructor() {
@@ -13,23 +14,31 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/api/v1/presidents', {
-        method: 'GET',
-        headers: {
-          'content-type': 'application/json'
-        }
-      })
-      if (!response.ok) {
-        throw Error('wrong')
+    const url = 'http://localhost:3001/api/v1/presidents'
+    const options = {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
       }
-      const result = await response.json()
-      console.log(result)
-      // debugger
-      this.props.presidentsFetchDataSuccess(result)
-    } catch {
-      debugger
     }
+    this.props.fetchPresidents(url, options)
+    // try {
+    //   const response = await fetch('http://localhost:3001/api/v1/presidents', {
+    //     method: 'GET',
+    //     headers: {
+    //       'content-type': 'application/json'
+    //     }
+    //   })
+    //   if (!response.ok) {
+    //     throw Error('wrong')
+    //   }
+    //   const result = await response.json()
+    //   console.log(result)
+    //   // debugger
+    //   this.props.presidentsFetchDataSuccess(result)
+    // } catch {
+    //   debugger
+    // }
   }
   render() {
     console.log(this.props)
@@ -48,7 +57,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  presidentsFetchDataSuccess: (presidents) => dispatch(presidentsFetchDataSuccess(presidents))
+  fetchPresidents: (url,options) => dispatch(fetchPresidents(url,options)),
+  // presidentsFetchDataSuccess: (presidents) => dispatch(presidentsFetchDataSuccess(presidents))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
